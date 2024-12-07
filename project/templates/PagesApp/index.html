@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+  Главная
+{% endblock %}
+{% block content %}
+  <div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-header">
+        Главная
+      </div>
+      <div class="card-body">
+        <a class="navbar-brand text-primary" href="{% url 'museum:floor' 1 %}">
+          Прогуляться по 1 этажу
+        </a>
+        <br>
+        <a class="navbar-brand text-primary" href="{% url 'museum:floor' 2 %}">
+          Прогуляться по 2 этажу
+        </a>
+        <br>
+        <a class="navbar-brand text-primary" href="{% url 'museum:floor' 3 %}">
+          Прогуляться по 3 этажу
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

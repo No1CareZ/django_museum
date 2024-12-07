@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+    Удаление экспоната '{{ object.title }}'
+{% endblock %}
+{% block content %}
+    <h1 class="text-center">Удаление экспоната '{{ object.title }}'</h1>
+    <p class="col-6 offset-3 mb-5 lead text-center">Вы уверены в удалении экспоната pk='{{ object.pk }}'?</p>
+    <form method="post">{% csrf_token %}
+        {{ form }}
+        <div class = "d-flex justify-content-center">
+            <input type="submit" value="Confirm" class="btn btn-danger">
+        </div>
+    </form>
+{% endblock %}

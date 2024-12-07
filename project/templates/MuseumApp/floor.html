@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+  Этаж {{ floor_level }}
+{% endblock %}
+{% block content %}
+  <h1 class="text-center">Добро пожаловать на этаж "{{ floor_level }}"</h1>
+  <p class="col-6 offset-3 mb-5 lead text-center">Это один из трёх этажей нашего музея!</p>
+  {% if is_admin %}
+    <div class = "d-flex justify-content-center">
+      <button type="button" class="btn btn-primary btn-lg btn-block"><a class="text-decoration-none text-reset"
+        href="{% url 'museum:exposition_create' %}">Добавить экспозицию</a></button>
+    </div>
+  {% endif %}
+  {% for exposition in page_obj %}
+    <article class="mb-5">  
+      {% include "includes/exposition_card.html" %}
+    </article>   
+  {% endfor %}
+  {% include "includes/paginator.html" %}
+{% endblock %}

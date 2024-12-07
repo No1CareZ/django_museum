@@ -1,0 +1,23 @@
+<div class="col d-flex justify-content-center">
+    <div class="card" style="width: 40rem;">
+      <div class="card-body">
+        {% if exibit.image %}
+          <a href="{{ exhibit.image.url }}" target="_blank">
+            <img class="border-3 rounded img-fluid img-thumbnail mb-2 mx-auto d-block" src="{{ exibit.image.url }}">
+          </a>
+        {% endif %}
+        <h5 class="card-title">{{ exhibit.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <small>
+            {% if exhibit.placement.on_restoration %}
+              <p class="text-danger">Экспозиция на рестоврации</p>
+            {% elif not exhibit.placement.open %}
+              <p class="text-danger">Экспозиция закрыта</p>
+            {% endif %}
+          </small>
+        </h6>
+        <p class="card-text">{{ exhibit.description|truncatewords:10 }}</p>
+        <a href="{% url 'museum:exhibit' exhibit.id %}" class="card-link">Узнать больше об экспонате</a>
+      </div>
+    </div>
+  </div>

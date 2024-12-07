@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}
+  Экспозиция {{ exposition.title }}
+{% endblock %}
+{% block content %}
+  <h1 class="text-center">Экспозиция {{ exposition.title }}</h1>
+  <p class="col-6 offset-3 mb-5 lead text-center">{{ exposition.description }}</p>
+  {% if is_admin %}
+    <div class = "d-flex justify-content-center">
+      <button type="button" class="btn btn-warning btn-lg btn-block"><a class="text-decoration-none text-reset"
+        href="{% url 'museum:exposition_update' exposition.pk %}">Редактировать экспозицию</a></button>
+      <button type="button" class="btn btn-danger btn-lg btn-block"><a class="text-decoration-none text-reset"
+        href="{% url 'museum:exposition_delete' exposition.pk %}">Удалить экспозицию</a></button>
+    </div>
+  {% endif %}
+  {% for exhibit in page_obj %}
+    <article class="mb-5">  
+      {% include "includes/exhibit_card.html" %}
+    </article>   
+  {% endfor %}
+  {% include "includes/paginator.html" %}
+{% endblock %}

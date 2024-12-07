@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+    {% with request.resolver_match.view_name as view_name %}
+        {% if view_name == 'museum:exposition_create' %} Добавление экспозициии {% elif view_name == 'museum:exposition_update' %} Редактирование экспозициии {{ object.pk }} {% endif %}
+    {% endwith %}
+{% endblock %}
+{% block content %}
+    {% with request.resolver_match.view_name as view_name %}
+        {% if view_name == 'museum:exposition_create' %}
+            <h1 class="text-center">Добавление экспозициии</h1>
+            <p class="col-6 offset-3 mb-5 lead text-center">Заполните форму ниже и добвьте новую экспозициию</p>
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save" class="btn btn-primary">
+            </form>
+        {% elif view_name == 'museum:exposition_update' %}
+            <h1 class="text-center">Редактирование экспозициии "{{ object.title }}"</h1>
+            <p class="col-6 offset-3 mb-5 lead text-center">Заполните форму ниже и измените экспозициию с pk={{ object.pk }}</p>
+            <form method="post">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Update" class="btn btn-primary">
+            </form>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

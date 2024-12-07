@@ -1,0 +1,24 @@
+<div class="col d-flex justify-content-center">
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      {% if exposition.image %}
+        <a href="{{ post.image.url }}" target="_blank">
+          <img class="border-3 rounded img-fluid img-thumbnail mb-2 mx-auto d-block" src="{{ post.image.url }}">
+        </a>
+      {% endif %}
+      <h5 class="card-title">{{ exposition.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <small>
+          {% if exposition.on_restoration %}
+            <p class="text-danger">Экспозиция на рестоврации</p>
+          {% elif not exposition.open %}
+            <p class="text-danger">Экспозиция закрыта</p>
+          {% endif %}
+        </small>
+      </h6>
+      <p class="card-text">Экспозиция состоит из {{ exposition.exibits_count}} экспонатов</p>
+      <p class="card-text">{{ exposition.description|truncatewords:10 }}</p>
+      <a href="{% url 'museum:exposition' exposition.id %}" class="card-link">Узнать больше об экспозции</a>
+    </div>
+  </div>
+</div>
